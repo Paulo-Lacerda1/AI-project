@@ -171,61 +171,6 @@ class StoneSprite(pygame.sprite.Sprite):
             (self.SCALE * self.stone.pos[0], self.SCALE * self.stone.pos[1]),
         )
 
-class SpiderSprite(pygame.sprite.Sprite):
-    def __init__(self, pos: tuple[int, int], WIDTH, HEIGHT, SCALE):
-        super().__init__()
-
-        SPIDER_SPRITESHEET = SpriteSheet("data/centipede-graphics.png")
-
-        self.pos = pos
-        self.SCALE = SCALE
-
-        spider_image_rect = (0 * CELL_SIZE, 2 * CELL_SIZE, CELL_SIZE, CELL_SIZE)
-        self.spider_image = SPIDER_SPRITESHEET.image_at(spider_image_rect, -1)
-        self.spider_image = pygame.transform.scale(self.spider_image, (SCALE, SCALE))
-        #self.spider_image.fill("green")
-
-        self.image = pygame.Surface([WIDTH * SCALE, HEIGHT * SCALE])
-        self.rect = self.image.get_rect()
-        self.update()
-
-    def update(self):
-        self.image.fill(BACKGROUND_COLOR)
-        self.image.set_colorkey(BACKGROUND_COLOR)
-
-        # Render Spider
-        self.image.blit(
-            self.spider_image,
-            (self.SCALE * self.pos[0], self.SCALE * self.pos[1]),
-        )
-
-class FleaSprite(pygame.sprite.Sprite):
-    def __init__(self, pos: tuple[int, int], WIDTH, HEIGHT, SCALE):
-        super().__init__()
-
-        FLEA_SPRITESHEET = SpriteSheet("data/centipede-graphics.png")
-
-        self.pos = pos
-        self.SCALE = SCALE
-
-        flea_image_rect = (1 * CELL_SIZE, 2 * CELL_SIZE, CELL_SIZE, CELL_SIZE)
-        self.flea_image = FLEA_SPRITESHEET.image_at(flea_image_rect, -1)
-        self.flea_image = pygame.transform.scale(self.flea_image, (SCALE, SCALE))
-        #self.flea_image.fill("green")
-
-        self.image = pygame.Surface([WIDTH * SCALE, HEIGHT * SCALE])
-        self.rect = self.image.get_rect()
-        self.update()
-
-    def update(self):
-        self.image.fill(BACKGROUND_COLOR)
-        self.image.set_colorkey(BACKGROUND_COLOR)
-
-        # Render Flea
-        self.image.blit(
-            self.flea_image,
-            (self.SCALE * self.pos[0], self.SCALE * self.pos[1]),
-        )
 
 class BlastSprite(pygame.sprite.Sprite):
     def __init__(self, blast: Blast, WIDTH, HEIGHT, SCALE):

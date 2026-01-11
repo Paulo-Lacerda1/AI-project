@@ -8,7 +8,6 @@ logger.setLevel(logging.DEBUG)
 
 BOTTOM_ROWS = 5
 
-
 class Map:
     def __init__(
         self,
@@ -47,9 +46,7 @@ class Map:
                     self._stones.append((xx, y))
             """
             # add mushrooms
-            while len(self._mushrooms) < (
-                self.hor_tiles * self.ver_tiles * mushroom_percentage
-            ):  # 10% of map
+            while len(self._mushrooms) < (self.hor_tiles * self.ver_tiles * mushroom_percentage):  # 10% of map
                 x, y = random.randint(0, self.hor_tiles - 1), random.randint(
                     0, self.ver_tiles - 1
                 )
@@ -63,7 +60,7 @@ class Map:
             # clean up bottom rows for bug blaster
             for x in range(self.hor_tiles):
                 for y in range(self.ver_tiles - BOTTOM_ROWS, self.ver_tiles):
-                    if self.map[x][y] == Tiles.FOOD and (x, y) in self._mushrooms:
+                    if self.map[x][y] == Tiles.FOOD and (x,y) in self._mushrooms:
                         self._mushrooms.remove((x, y))
                     if self.map[x][y] == Tiles.STONE:
                         self._stones.remove((x, y))
@@ -80,9 +77,7 @@ class Map:
     def spawn_mushroom(self):
         if not self._queue_mushrooms or len(self._queue_mushrooms) == 0:
             logger.warning("No more mushrooms to spawn")
-            while len(self._queue_mushrooms) < (
-                self.hor_tiles * self.ver_tiles * 0.1
-            ):  # generate packs corresponding to 10% of map
+            while len(self._queue_mushrooms) < (self.hor_tiles * self.ver_tiles * 0.1):  # generate packs corresponding to 10% of map
                 x, y = random.randint(0, self.hor_tiles - 1), random.randint(
                     0, self.ver_tiles - BOTTOM_ROWS
                 )
